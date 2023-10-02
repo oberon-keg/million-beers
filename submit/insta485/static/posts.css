@@ -1,0 +1,212 @@
+:root {
+    --navbar-height: 100px;
+}
+
+hr {
+    height: 3px;
+    background-color: black;
+}
+
+h2,
+h3 {
+    font-family: Arial, sans-serif;
+}
+
+p {
+    font-family: Arial;
+    font-size: 20px;
+}
+
+a:link {
+    text-decoration: none !important;
+}
+
+/* General Classes */
+
+.vertical-center {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/* Header Classes */
+
+.navbar {
+    display: flex;
+    flex-direction: row;
+    height: var(--navbar-height);
+}
+
+.navbar-left {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    height: 100%;
+    width: 50%
+}
+
+.navbar-right {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-end;
+    height: 100%;
+    width: 50%
+}
+
+.navbar-object {
+    flex-direction: column;
+    padding-right: 30px;
+
+}
+
+.navbar-widget {
+    height: var(--navbar-height);
+}
+
+.pipe {
+    border-left: thick solid black;
+}
+
+/* Feed Classes */
+
+.feed {
+    display: flex;
+    flex-direction: column;
+}
+
+.post {
+    display: flex;
+    flex-direction: column;
+    width: 80%;
+    margin-left: auto;
+    margin-right: auto;
+    border-style: solid;
+    border-width: thin;
+    border-radius: 5px;
+}
+
+.post-header {
+    display: flex;
+    flex-direction: row;
+    height: 100px;
+}
+
+.post-header-left {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    width: 50%;
+    margin-left: 5px;
+    padding: 2px;
+}
+
+.post-header-right {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-end;
+    width: 50%;
+    margin-right: 5px;
+}
+
+.post-header-element {
+    margin-left: 5px;
+    margin-right: 5px;
+}
+
+
+.post-image {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    width: 100%;
+}
+
+.post-summary {
+    display: flex;
+    flex-direction: column;
+}
+
+.post-description {
+    display: flex;
+    flex-direction: column;
+}
+
+.post-detail {
+    display: flex;
+    flex-direction: row;
+}
+
+.post-vertical-summary {
+    display: flex;
+    flex-direction: column;
+}
+
+.post-detail-user-header {
+    display: flex;
+    flex-direction: row;
+}
+
+
+.comment_section {
+    display: flex;
+    flex-direction: column;
+}
+
+.comment {
+    display: flex;
+    flex-direction: row;
+}
+
+/* Profile Classes */
+
+.profile-info {
+    display: flex;
+    flex-direction: column;
+}
+
+.profile-metrics {
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+}
+
+.image-grid {
+    align-content: flex-start;
+}
+
+
+.profile-followers {
+    display: flex;
+    flex-direction: column;
+}
+
+
+.profile-follower {
+    display: flex;
+    flex-direction: row;
+    width: 80%;
+    height: 100px;
+    margin-left: auto;
+    margin-right: auto;
+    border-style: solid;
+    border-width: thin;
+    border-radius: 5px;
+}
+
+.profile-follower-left {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    height: 100%;
+    width: 50%;
+    margin: 5px;
+}
+
+.profile-follower-right {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-end;
+    height: 100%;
+    width: 50%;
+    margin: 5px;
+}

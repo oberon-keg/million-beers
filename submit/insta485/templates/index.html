@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>insta485</title>
+    <link rel="stylesheet" href="/static/index.css">
+</head>
+<header class="navbar">
+    <div class="navbar-left">
+        <a class="navbar-object" href="/">
+            <h1>Insta485</h1>
+        </a>
+    </div>
+    <div class="navbar-right">
+        <a class="navbar-object" href="/explore/">
+            <h2>explore</h2>
+        </a>
+        <div class="pipe navbar-object"></div>
+        <a class="navbar-object" href="/users/{{ logname }}/">
+            <h2>{{ logname }}</h2>
+        </a>
+    </div>
+</header>
+<hr>
+<br>
+{% for post in posts %}
+<div class="post">
+    <div class="post-header">
+        <a href="/users/{{ post.owner }}/" class="post-header-left">
+            <img class="post-header-element" src="{{ post.owner_image }}" alt="owner post">
+            <h3 class="post-header-element vertical-center">{{ post.owner }}</h3>
+        </a>
+        <a href="/posts/{{ post.postid }}/" class="post-header-right">
+            <h3 class="vertical-center" style="color: grey">{{ post.created }}</h3>
+        </a>
+    </div>
+    <img class="post-image" src="{{ post.image }}" alt="post-{{ post_id }}">
+    <div class="post-summary">
+        <div class="post-description">
+            {% if post.like_info.like_count != 1 %}
+            <p>{{ post.like_info.like_count }} likes</p>
+            {% else %}
+            <p>{{ post.like_info.like_count }} like</p>
+            {% endif %}
+        </div>
+        <div class="comment-section">
+            {% for comment in post.comments %}
+            <div class="comment">
+                <p><strong><a href="/users/{{ comment.owner }}/">{{ comment.owner }}</a></strong> {{ comment.text }}</p>
+            </div>
+            {% endfor %}
+        </div>
+        {% if not post.like_info.liked_by_logname %} 
+        <form action="/likes/?target={{ current_url }}" method="post" enctype="multipart/form-data">
+            <input type="hidden" name="operation" value="like"/>
+            <input type="hidden" name="postid" value="{{ post.postid }}"/>
+            <input type="submit" name="like" value="like"/>
+        </form>
+        {% else %}
+        <form action="/likes/?target={{ current_url }}" method="post" enctype="multipart/form-data">
+            <input type="hidden" name="operation" value="unlike"/>
+            <input type="hidden" name="postid" value="{{ post.postid }}"/>
+            <input type="submit" name="unlike" value="unlike"/>
+        </form>
+        {% endif %}
+        <form action="/comments/?target={{ current_url }}" method="post" enctype="multipart/form-data">
+            <input type="hidden" name="operation" value="create"/>
+            <input type="hidden" name="postid" value="{{ post.postid }}"/>
+            <input type="text" name="text" required/>
+            <input type="submit" name="comment" value="comment"/>
+        </form>
+        
+    </div>
+</div>
+<br>
+{% endfor %}
+
+</html>

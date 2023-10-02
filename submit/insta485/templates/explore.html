@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <title>insta485</title>
+    </head>
+    <body>
+        <header class="top-container">
+            <a class = "float-left" href="/">Insert Logo Here</a>
+            <a class = "float-right" href="/explore/">Explore</a>
+            <a class = "float-right" href="/users/awdeorio/">{{logname}}</a>
+        </header>
+        <h1>Discover People</h1>
+        <ul>
+          {% for user in not_following %}
+            <li>
+                <a href="/users/{{ user.username }}/">
+                    <img height = 75 src={{user.filename}} alt="">{{user.username}}
+                </a>
+                
+                <form action="/following/?target={{current_url}}" method="post" enctype="multipart/form-data">
+                    <input type="submit" name="follow" value="follow"/>
+                    <input type="hidden" name="username" value="{{user.username}}"/>
+                    <input type="hidden" name="operation" value="follow"/>
+                </form>
+            </li>
+          {% endfor %}
+        </ul>
+    </body>
+</html>

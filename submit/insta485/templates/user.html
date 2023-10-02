@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <title>insta485</title>
+    </head>
+    <body>
+        <header class="top-container">
+            <a class = "float-left" href="/">Insert Logo Here</a>
+            <a class = "float-right" href="/explore/">Explore</a>
+            <a class = "float-right" href="/users/{{logname}}/">{{logname}}</a>
+        </header>
+        <div class="profile-container">
+            <div class="profile-info">
+                <h3>{{username}}</h3>
+                <p>{% if logname == username %} {% elif is_following == 1%}following{% else %}not following{% endif %}</p>
+                {% if logname == username %}
+                {% elif is_following == 1%}
+                <form action="/following/?target={{current_url}}/" method="post" enctype="multipart/form-data">
+                    <input type="submit" name="unfollow" value="unfollow"/>
+                    <input type="hidden" name="username" value= "{{username}}"/>
+                    <input type="hidden" name="operation" value="unfollow"/>
+                </form>
+                {% else %}
+                <form action="/following/?target={{current_url}}/" method="post" enctype="multipart/form-data">
+                    <input type="submit" name="follow" value="follow"/>
+                    <input type="hidden" name="username" value="{{username}}"/>
+                    <input type="hidden" name="operation" value="follow"/>
+                </form>
+                {% endif %}
+                <p>{{num_posts}} {% if num_posts == 1 %}post {% else %} posts {% endif %} <a href="/users/{{username}}/followers/"><b>{{num_follower}} {% if num_follower == 1 %}follower {% else %} followers {% endif %}</b></a> <a href="/users/{{username}}/following/"><b>{{num_following}} following</b></a></p>
+                {{fullname}}
+                {% if logname == username %}
+                <form action="/accounts/logout/" method="post" enctype="multipart/form-data">
+                    <input type="submit" name="logout" value="Logout"/>
+                </form>
+                <form action="/posts/?target={{current_url}}/" method="post" enctype="multipart/form-data">
+                    <input type="file" name="file" accept="image/*" required/>
+                    <input type="submit" name="create_post" value="upload new post"/>
+                    <input type="hidden" name="operation" value="create"/>
+                </form>
+                <a href="/accounts/edit/">Edit profile</a>
+                {% endif %}
+            </div>
+            <div class="profile-posts">
+                {% for post in posts%}
+                <a href="/posts/{{post.postid}}/">
+                    <img src={{post.filename}} alt="post">
+                </a>
+                {% endfor %}
+            </div>
+        </div>
+    </body>
+</html>

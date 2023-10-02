@@ -1,0 +1,19 @@
+#!/bin/bash
+# insta485run
+# Stop on errors
+# See https://vaneyckt.io/posts/safer_bash_scripts_with_set_euxo_pipefail/
+set -Eeuxo pipefail
+#set -x
+
+export FLASK_DEBUG=True
+export FLASK_ENV=development
+export FLASK_APP=insta485
+export INSTA485_SETTINGS=config.py
+
+rm -rf var/insta485.sqlite3 var/uploads
+mkdir -p var/uploads
+sqlite3 var/insta485.sqlite3 < sql/schema.sql
+sqlite3 var/insta485.sqlite3 < sql/data.sql
+cp sql/uploads/* var/uploads/
+
+flask run --host 0.0.0.0 --port 8000

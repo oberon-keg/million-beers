@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>insta485</title>
+    <link rel="stylesheet" href="/static/index.css/">
+</head>
+<header class="navbar">
+    <div class="navbar-left">
+        <a class="navbar-object" href="/">
+            <h1>Insta485</h1>
+        </a>
+    </div>
+    <div class="navbar-right">
+        <a class="navbar-object" href="/explore/">
+            <h2>explore</h2>
+        </a>
+        <div class="pipe navbar-object"></div>
+        <a class="navbar-object" href="/users/{{ logname }}/">
+            <h2>{{ logname }}</h2>
+        </a>
+    </div>
+</header>
+<hr>
+{% block content %}{% endblock %}
+</html>
